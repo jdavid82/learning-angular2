@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from './product';
 
 @Component({
@@ -11,7 +11,7 @@ export class ProductDetailComponent implements OnInit {
   pageTitle: string = 'Product Detail';
   product: IProduct | undefined; // that single pipe means "or", so it's either an IProduct or an undefined (because we have to wait for the heep response to populate this property)
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,5 +27,9 @@ export class ProductDetailComponent implements OnInit {
       starRating: 3.2,
       imageUrl: 'assets/images/leaf_rake.png',
     };
+  }
+
+  onBack(): void {
+    this.router.navigate(['/products']);
   }
 }
