@@ -1,5 +1,17 @@
 <div class="card">
+  <!-- You could use the Safe Navigation Operator (?) so it would be like "product?.productName"
+   {{ pageTitle + ": " + product?.productName }}
+   This operator guards against null and undefined values when navigating an object's properties.
+   If the product is null or undefined, the navigation operator simply returns "null" and doesn't attempt to access the productName property.
+   BUT it's not always the best option, for example it doesn't work when used in the ngModel to a binding:
+   [(ngModel)]='product?.productName'   <== that won't work
+   It also can be quite tedious when we display  many properties. There is another option, use "*ngIf" as below:
+   <div class="card-header" *ngIf="product">
+    {{ pageTitle + ": " + product.productName }}
+  </div>
+  but we always want to show the pageTitle, so we'll use the safe navigation operator for this, but will definitely use *ngIf for the final product details html code.
+   -->
   <div class="card-header">
-    {{ pageTitle }}
+    {{ pageTitle + ": " + product?.productName }}
   </div>
 </div>
